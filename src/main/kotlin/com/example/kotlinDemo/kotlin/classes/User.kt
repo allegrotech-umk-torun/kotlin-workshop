@@ -18,7 +18,7 @@ data class Name(
     val lastName: String? = null,
 )
 
-enum class UserStatus {
-    REGULAR,
-    PREMIUM
+enum class UserStatus(status: String) {
+    REGULAR("regular"),
+    PREMIUM("premium")
 }

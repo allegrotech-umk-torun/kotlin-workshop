@@ -18,7 +18,6 @@ class Examples {
             println("booleanName(true) = ${booleanName(true)}")
 
             println("booleanName(false) = ${booleanName(false)}")
-
         }
     }
 }
