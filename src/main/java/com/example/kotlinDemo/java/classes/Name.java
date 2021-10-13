@@ -1,4 +1,4 @@
-package com.example.kotlinDemo.java.dataClass;
+package com.example.kotlinDemo.java.classes;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -25,13 +25,13 @@ public class Name {
         return lastName;
     }
 
-    @Override
-    public String toString() {
-        return "Name{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Name{" +
+//                "firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                '}';
+//    }
 }
 
 

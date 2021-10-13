@@ -1,4 +1,4 @@
-package com.example.kotlinDemo.java.dataClass;
+package com.example.kotlinDemo.java.classes;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,12 +34,12 @@ public class User {
         return age;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", name=" + name +
-                ", age=" + age +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userId=" + userId +
+//                ", name=" + name +
+//                ", age=" + age +
+//                '}';
+//    }
 }
