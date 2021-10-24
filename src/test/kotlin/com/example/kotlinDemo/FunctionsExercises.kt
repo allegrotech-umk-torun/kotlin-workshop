@@ -42,8 +42,8 @@ class FunctionsExercises {
 	fun connectTest() {
 		assertEquals("rower" connect "czerwony", "rowerCZERWONY")
 		assertEquals("ROWER" connect "czerwony", "rowerCZERWONY")
-		assertEquals("RoWoR" connect "CzErWoNy", "rowerCZERWONY")
-		assertEquals("RoWoR" connect "", "rower")
+		assertEquals("RoWeR" connect "CzErWoNy", "rowerCZERWONY")
+		assertEquals("RoWeR" connect "", "rower")
 		assertEquals("" connect "CzErWoNy", "CZERWONY")
 
 	}

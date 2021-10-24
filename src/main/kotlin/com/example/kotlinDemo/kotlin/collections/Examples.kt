@@ -8,31 +8,32 @@ class Examples {
             // listy
 
             val fruits = listOf("banana", "avocado", "apple", "grape")
+
             println("fruits = $fruits")
 
-//            val fruitsWithDuplicates = listOf("banana", "avocado", "apple", "grape", "banana")
+            val fruitsWithDuplicates = listOf("banana", "avocado", "apple", "grape", "banana")
 //            println("fruitsWithDuplicates = $fruitsWithDuplicates")
-//
-//            //zbiory
-//
-//            val setOfFruits = setOf("banana", "avocado", "apple", "grape", "banana")
+
+            //zbiory
+
+            val setOfFruits = setOf("banana", "avocado", "apple", "grape", "banana")
 //            println("setOfFrits = $setOfFruits")
-//
-//            //mapy
-//
-//            val fruitsMap = mapOf("banana" to "yellow", "avocado" to "green", "apple" to "red")
+
+            //mapy
+
+            val fruitsMap = mapOf("banana" to "yellow", "avocado" to "green", "apple" to "red")
 //            println("fruitsMap = $fruitsMap")
-//
-//
-//            val afterOperations = fruits
-//                .filter { it.startsWith("a") }
-//                .sortedBy { it.length }
-//                .map { it.uppercase() }
-//                .map { Pair(it, it.length) }
-//                .toMap()
-//
-//                afterOperations.forEach { print("$it ") }
-//
+
+
+            val afterOperations = fruits
+                .filter { it.startsWith("a") }
+                .sortedBy { it.length }
+                .map { it.uppercase() }
+                .map { Pair(it, it.length) }
+                .toMap()
+
+                afterOperations.forEach { print("$it ") }
+
         }
     }
 }
