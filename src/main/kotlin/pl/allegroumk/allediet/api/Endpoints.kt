@@ -3,7 +3,6 @@ package pl.allegroumk.allediet.api
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.client.HttpClientErrorException
 import pl.allegroumk.allediet.api.model.InputMeal
 import pl.allegroumk.allediet.api.model.UpdateMeal
 import pl.allegroumk.allediet.service.MealsService

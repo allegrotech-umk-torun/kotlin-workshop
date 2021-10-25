@@ -2,8 +2,6 @@ package pl.allegroumk.allediet.repository.inMemoryRepository
 
 import org.apache.commons.lang3.RandomStringUtils
 import org.springframework.stereotype.Component
-import pl.allegroumk.allediet.api.model.InputIngredient
-import pl.allegroumk.allediet.api.model.InputMeal
 import pl.allegroumk.allediet.service.model.Ingredient
 import pl.allegroumk.allediet.service.model.Meal
 import java.time.LocalDateTime
