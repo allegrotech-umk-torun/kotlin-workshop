@@ -1,15 +1,25 @@
 package pl.allegroumk.allediet.service.model
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import java.time.LocalDateTime
-import java.util.*
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class Meal(
-    val id: UUID,
+    val id: String,
     val name: String,
     val calories: Int,
     val ingredients: List<Ingredient>,
-    val createdAt: LocalDateTime
-)
+    val createdAt: LocalDateTime,
+    val updatedAt: LocalDateTime? = null
+) {
+    constructor(
+        id: String,
+        name: String,
+        ingredients: List<Ingredient>,
+        createdAt: LocalDateTime,
+        updatedAt: LocalDateTime? = null
+    ) : this(id, name, ingredients.sumOf { it.calories }, ingredients, createdAt, updatedAt)
+}
 
 data class Ingredient(
     val name: String,

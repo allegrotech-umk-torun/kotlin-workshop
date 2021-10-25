@@ -1,28 +1,17 @@
 package pl.allegroumk.allediet.repository
 
-import org.springframework.stereotype.Component
-import pl.allegroumk.allediet.api.model.InputMeal
 import pl.allegroumk.allediet.service.model.Ingredient
 import pl.allegroumk.allediet.service.model.Meal
-import java.time.LocalDateTime
-import java.util.*
-import kotlin.collections.HashSet
 
-@Component
-class MealsRepository {
-    private val meals: MutableSet<Meal> = HashSet()
+interface MealsRepository {
 
-    fun getAllMeals() = meals
-    fun insertMeal(inputMeal: InputMeal) {
+    fun getAllMeals(): Iterable<Meal>
 
-        meals.add(
-            Meal(
-                id = UUID.randomUUID(),
-                name = inputMeal.name,
-                calories = inputMeal.calories,
-                ingredients = inputMeal.ingredients.map { Ingredient(it.name, it.calories) },
-                createdAt = LocalDateTime.now()
-            )
-        )
-    }
+    fun getMeal(id: String): Meal?
+
+    fun insertMeal(meal: Meal): Meal
+
+    fun deleteMeal(id: String)
+
+    fun addIngredientsToMeal(idToUpdate: String, ingredientsToAdd: List<Ingredient>): Meal?
 }
