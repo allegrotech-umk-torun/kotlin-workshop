@@ -1,11 +1,11 @@
-package com.example.kotlinDemo
+package pl.allegroumk.allediet
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KotlinDemoApplication
+class AlledietApplication
 
 fun main(args: Array<String>) {
-	runApplication<KotlinDemoApplication>(*args)
+	runApplication<AlledietApplication>(*args)
 }

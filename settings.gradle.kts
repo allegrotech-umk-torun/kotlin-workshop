@@ -1,1 +1,1 @@
-rootProject.name = "kotlinDemo"
+rootProject.name = "allediet"
