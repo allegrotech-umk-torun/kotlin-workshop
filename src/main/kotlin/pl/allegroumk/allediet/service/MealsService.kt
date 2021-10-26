@@ -30,7 +30,20 @@ class MealsService(
     }
 
     fun updateMeal(updateMeal: UpdateMeal): Meal? {
-        return mealsRepository.addIngredientsToMeal(updateMeal.id, updateMeal.ingredients.map { Ingredient(it.name, it.calories) })
+        val mealToUpdate = getMeal(updateMeal.id)
+        val updatedMeal = mealToUpdate?.let {
+            it.copy(
+                calories = it.calories + updateMeal.ingredients.sumOf { it.calories },
+                ingredients = it.ingredients + updateMeal.ingredients.map { Ingredient(it.name, it.calories) },
+                updatedAt = LocalDateTime.now()
+            )
+        }
+
+        if (updatedMeal != null) {
+            deleteMeal(updateMeal.id)
+            mealsRepository.updateMeal(updatedMeal)
+        }
+        return updatedMeal
     }
 
     fun deleteMeal(id: String) = mealsRepository.deleteMeal(id)

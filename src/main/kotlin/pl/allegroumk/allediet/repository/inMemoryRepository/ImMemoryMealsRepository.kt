@@ -20,22 +20,9 @@ class ImMemoryMealsRepository : MealsRepository {
         return meal
     }
 
-    override fun addIngredientsToMeal(idToUpdate: String, ingredientsToAdd: List<Ingredient>): Meal? {
-        val mealToUpdate = getMeal(idToUpdate)
-        val newMeal = mealToUpdate?.let {
-                Meal(
-                    id = it.id,
-                    name = it.name,
-                    ingredients = it.ingredients + ingredientsToAdd.map { Ingredient(it.name, it.calories) },
-                    createdAt = it.createdAt,
-                    updatedAt = LocalDateTime.now()
-                )
-        }
-        if (newMeal != null) {
-            deleteMeal(idToUpdate)
-            meals.add(newMeal)
-        }
-        return newMeal
+    override fun updateMeal(mealToUpdate: Meal) {
+            deleteMeal(mealToUpdate.id)
+            meals.add(mealToUpdate)
     }
 
     override fun deleteMeal(id: String) {

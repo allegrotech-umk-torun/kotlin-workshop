@@ -17,35 +17,46 @@ class Endpoints(
         value = ["/all"],
         produces = [RESPONSE_MEDIA_TYPE]
     )
-    fun getMeals() = mealsService.getAllMeals()
+    @ResponseBody
+    fun getMeals(): ResponseEntity<Iterable<Meal>> {
+        val allMeals = mealsService.getAllMeals()
+        return ResponseEntity.ok().body(allMeals)
+    }
 
     @GetMapping(
         value = ["/all"],
         produces = [V2_MEDIA_TYPE]
     )
-    fun getMealsSorted() = mealsService.getAllMeals().sortedBy { it.calories }
+    fun getMealsSorted(): ResponseEntity<Iterable<Meal>> {
+        val allMeals = mealsService.getAllMeals().sortedBy { it.calories }
+        return ResponseEntity.ok().body(allMeals)
+    }
 
     @GetMapping(
         value = ["/show"],
         produces = [RESPONSE_MEDIA_TYPE]
     )
-    fun getMeal(@RequestParam("id") id: String) = mealsService.getMeal(id) ?: ResponseEntity.notFound().build<Meal>()
+    fun getMeal(@RequestParam("id") id: String): ResponseEntity<Meal> {
+        return mealsService.getMeal(id)?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound().build()
+    }
 
     @PostMapping(
         value = ["/add"],
         consumes = [RESPONSE_MEDIA_TYPE],
         produces = [RESPONSE_MEDIA_TYPE]
     )
-    fun insertMeal(@RequestBody inputMeal: InputMeal) = mealsService.insertMeal(inputMeal)
+    fun insertMeal(@RequestBody inputMeal: InputMeal): ResponseEntity<Meal>  {
+        return ResponseEntity.ok().body(mealsService.insertMeal(inputMeal))
+    }
 
     @PostMapping(
         value = ["/update"],
         consumes = [RESPONSE_MEDIA_TYPE],
         produces = [RESPONSE_MEDIA_TYPE]
     )
-    fun updateMeal(@RequestBody updateMeal: UpdateMeal) =
-        mealsService.updateMeal(updateMeal) ?: ResponseEntity.notFound().build<Meal>()
-
+    fun updateMeal(@RequestBody updateMeal: UpdateMeal): ResponseEntity<Meal> {
+        return mealsService.updateMeal(updateMeal)?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound().build()
+    }
     @DeleteMapping(
         value = ["/remove/{id}"]
     )

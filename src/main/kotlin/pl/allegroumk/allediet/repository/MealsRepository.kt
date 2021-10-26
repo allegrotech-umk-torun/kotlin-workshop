@@ -1,6 +1,5 @@
 package pl.allegroumk.allediet.repository
 
-import pl.allegroumk.allediet.service.model.Ingredient
 import pl.allegroumk.allediet.service.model.Meal
 
 interface MealsRepository {
@@ -13,5 +12,5 @@ interface MealsRepository {
 
     fun deleteMeal(id: String)
 
-    fun addIngredientsToMeal(idToUpdate: String, ingredientsToAdd: List<Ingredient>): Meal?
+    fun updateMeal(mealToUpdate: Meal)
 }
