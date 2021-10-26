@@ -14,37 +14,37 @@ class MealsService(
     val mealsRepository: ImMemoryMealsRepository
 ) {
 
-    fun getAllMeals() = mealsRepository.getAllMeals()
-
-    fun getMeal(id: String) = mealsRepository.getMeal(id)
-
-    fun insertMeal(inputMeal: InputMeal): Meal {
-        val mealToAdd = Meal(
-            id = RandomStringUtils.random(8, true, true),
-            name = inputMeal.name,
-            ingredients = inputMeal.ingredients.map { Ingredient(it.name, it.calories) },
-            createdAt = LocalDateTime.now()
-        )
-        mealsRepository.insertMeal(mealToAdd)
-        return mealToAdd
-    }
-
-    fun updateMeal(updateMeal: UpdateMeal): Meal? {
-        val mealToUpdate = getMeal(updateMeal.id)
-        val updatedMeal = mealToUpdate?.let {
-            it.copy(
-                calories = it.calories + updateMeal.ingredients.sumOf { it.calories },
-                ingredients = it.ingredients + updateMeal.ingredients.map { Ingredient(it.name, it.calories) },
-                updatedAt = LocalDateTime.now()
-            )
-        }
-
-        if (updatedMeal != null) {
-            deleteMeal(updateMeal.id)
-            mealsRepository.updateMeal(updatedMeal)
-        }
-        return updatedMeal
-    }
-
-    fun deleteMeal(id: String) = mealsRepository.deleteMeal(id)
+//    fun getAllMeals() = mealsRepository.getAllMeals()
+//
+//    fun getMeal(id: String) = mealsRepository.getMeal(id)
+//
+//    fun insertMeal(inputMeal: InputMeal): Meal {
+//        val mealToAdd = Meal(
+//            id = RandomStringUtils.random(8, true, true),
+//            name = inputMeal.name,
+//            ingredients = inputMeal.ingredients.map { Ingredient(it.name, it.calories) },
+//            createdAt = LocalDateTime.now()
+//        )
+//        mealsRepository.insertMeal(mealToAdd)
+//        return mealToAdd
+//    }
+//
+//    fun updateMeal(updateMeal: UpdateMeal): Meal? {
+//        val mealToUpdate = getMeal(updateMeal.id)
+//        val updatedMeal = mealToUpdate?.let {
+//            it.copy(
+//                calories = it.calories + updateMeal.ingredients.sumOf { it.calories },
+//                ingredients = it.ingredients + updateMeal.ingredients.map { Ingredient(it.name, it.calories) },
+//                updatedAt = LocalDateTime.now()
+//            )
+//        }
+//
+//        if (updatedMeal != null) {
+//            deleteMeal(updateMeal.id)
+//            mealsRepository.updateMeal(updatedMeal)
+//        }
+//        return updatedMeal
+//    }
+//
+//    fun deleteMeal(id: String) = mealsRepository.deleteMeal(id)
 }
