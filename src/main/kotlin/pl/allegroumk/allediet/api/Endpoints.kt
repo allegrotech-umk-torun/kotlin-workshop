@@ -1,6 +1,5 @@
 package pl.allegroumk.allediet.api
 
-import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import pl.allegroumk.allediet.api.model.InputMeal
@@ -16,7 +15,7 @@ class Endpoints(
 
     @GetMapping(
         value = ["/all"],
-        produces = [MediaType.APPLICATION_JSON_VALUE]
+        produces = [RESPONSE_MEDIA_TYPE]
     )
     fun getMeals() = mealsService.getAllMeals()
 
@@ -28,23 +27,24 @@ class Endpoints(
 
     @GetMapping(
         value = ["/show"],
-        produces = [MediaType.APPLICATION_JSON_VALUE]
+        produces = [RESPONSE_MEDIA_TYPE]
     )
     fun getMeal(@RequestParam("id") id: String) = mealsService.getMeal(id) ?: ResponseEntity.notFound().build<Meal>()
 
-    @PutMapping(
+    @PostMapping(
         value = ["/add"],
-        consumes = [MediaType.APPLICATION_JSON_VALUE],
-        produces = [MediaType.APPLICATION_JSON_VALUE]
+        consumes = [RESPONSE_MEDIA_TYPE],
+        produces = [RESPONSE_MEDIA_TYPE]
     )
     fun insertMeal(@RequestBody inputMeal: InputMeal) = mealsService.insertMeal(inputMeal)
 
     @PostMapping(
         value = ["/update"],
-        consumes = [MediaType.APPLICATION_JSON_VALUE],
-        produces = [MediaType.APPLICATION_JSON_VALUE]
+        consumes = [RESPONSE_MEDIA_TYPE],
+        produces = [RESPONSE_MEDIA_TYPE]
     )
-    fun updateMeal(@RequestBody updateMeal: UpdateMeal) = mealsService.updateMeal(updateMeal) ?: ResponseEntity.notFound().build<Meal>()
+    fun updateMeal(@RequestBody updateMeal: UpdateMeal) =
+        mealsService.updateMeal(updateMeal) ?: ResponseEntity.notFound().build<Meal>()
 
     @DeleteMapping(
         value = ["/remove/{id}"]
@@ -54,6 +54,7 @@ class Endpoints(
     }
 
     companion object {
-       const val V2_MEDIA_TYPE = "application/v2+json"
+        const val RESPONSE_MEDIA_TYPE = "application/json"
+        const val V2_MEDIA_TYPE = "application/v2+json"
     }
 }
