@@ -21,7 +21,14 @@ data class Meal(
     ) : this(id, name, ingredients.sumOf { it.calories }, ingredients, createdAt, updatedAt)
 }
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class MealToUpdate(
+    val id: String,
+    val ingredients: List<Ingredient>
+)
+
 data class Ingredient(
     val name: String,
     val calories: Int
 )
+

@@ -4,19 +4,19 @@ import org.apache.commons.lang3.RandomStringUtils
 import org.springframework.stereotype.Component
 import pl.allegroumk.allediet.api.model.InputMeal
 import pl.allegroumk.allediet.api.model.UpdateMeal
-import pl.allegroumk.allediet.repository.inMemoryRepository.ImMemoryMealsRepository
+import pl.allegroumk.allediet.repository.MealsRepository
 import pl.allegroumk.allediet.service.model.Ingredient
 import pl.allegroumk.allediet.service.model.Meal
 import java.time.LocalDateTime
 
 @Component
 class MealsService(
-    val mealsRepository: ImMemoryMealsRepository
+    val repository: MealsRepository
 ) {
 
-    fun getAllMeals() = mealsRepository.getAllMeals()
+    fun getAllMeals() = repository.getAllMeals()
 
-    fun getMeal(id: String) = mealsRepository.getMeal(id)
+    fun getMeal(id: String) = repository.getMeal(id)
 
     fun insertMeal(inputMeal: InputMeal): Meal {
         val mealToAdd = Meal(
@@ -25,7 +25,7 @@ class MealsService(
             ingredients = inputMeal.ingredients.map { Ingredient(it.name, it.calories) },
             createdAt = LocalDateTime.now()
         )
-        mealsRepository.insertMeal(mealToAdd)
+        repository.insertMeal(mealToAdd)
         return mealToAdd
     }
 
@@ -41,10 +41,18 @@ class MealsService(
 
         if (updatedMeal != null) {
             deleteMeal(updateMeal.id)
-            mealsRepository.updateMeal(updatedMeal)
+            repository.updateMeal(updatedMeal)
         }
         return updatedMeal
     }
 
-    fun deleteMeal(id: String) = mealsRepository.deleteMeal(id)
+    fun deleteMeal(id: String) = repository.deleteMeal(id)
+
+    //fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int) =
+    //    repository.getMealsWithCaloriesBetween(minCalories, maxCalories)
+    //
+    //fun getAllMealsSortedInDB() = repository.getAllMealsSortedByNameDescending()
+    //
+    //fun getMealsAdvanced() = repository.getMealsWithMoreIngredientsThan(5)
+
 }

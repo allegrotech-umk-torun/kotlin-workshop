@@ -27,10 +27,19 @@ class Endpoints(
         value = ["/all"],
         produces = [V2_MEDIA_TYPE]
     )
-    fun getMealsSorted(): ResponseEntity<Iterable<Meal>> {
+    fun getMealsSortedInApp(): ResponseEntity<Iterable<Meal>> {
         val allMeals = mealsService.getAllMeals().sortedBy { it.calories }
         return ResponseEntity.ok().body(allMeals)
     }
+
+    //@GetMapping(
+    //    value = ["/all"],
+    //    produces = [V3_MEDIA_TYPE]
+    //)
+    //fun getMealsSortedInDB(): ResponseEntity<Iterable<Meal>> {
+    //    val allMeals = mealsService.getAllMealsSortedInDB()
+    //    return ResponseEntity.ok().body(allMeals)
+    //}
 
     @GetMapping(
         value = ["/show"],
@@ -40,12 +49,33 @@ class Endpoints(
         return mealsService.getMeal(id)?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound().build()
     }
 
+    //@GetMapping(
+    //    value = ["/find"],
+    //    produces = [RESPONSE_MEDIA_TYPE]
+    //)
+    //fun getMealsWithCaloriesBetween(
+    //    @RequestParam("minCalories") minCalories: Int,
+    //    @RequestParam("maxCalories") maxCalories: Int
+    //): ResponseEntity<Iterable<Meal>> {
+    //    val allMeals = mealsService.getMealsWithCaloriesBetween(minCalories, maxCalories)
+    //    return ResponseEntity.ok().body(allMeals)
+    //}
+
+    //@GetMapping(
+    //    value = ["/advanced"],
+    //    produces = [RESPONSE_MEDIA_TYPE]
+    //)
+    //fun getMealsAdvanced(): ResponseEntity<Iterable<Meal>> {
+    //    val allMeals = mealsService.getMealsAdvanced()
+    //    return ResponseEntity.ok().body(allMeals)
+    //}
+
     @PostMapping(
         value = ["/add"],
         consumes = [RESPONSE_MEDIA_TYPE],
         produces = [RESPONSE_MEDIA_TYPE]
     )
-    fun insertMeal(@RequestBody inputMeal: InputMeal): ResponseEntity<Meal>  {
+    fun insertMeal(@RequestBody inputMeal: InputMeal): ResponseEntity<Meal> {
         return ResponseEntity.ok().body(mealsService.insertMeal(inputMeal))
     }
 
@@ -55,8 +85,10 @@ class Endpoints(
         produces = [RESPONSE_MEDIA_TYPE]
     )
     fun updateMeal(@RequestBody updateMeal: UpdateMeal): ResponseEntity<Meal> {
-        return mealsService.updateMeal(updateMeal)?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound().build()
+        return mealsService.updateMeal(updateMeal)?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound()
+            .build()
     }
+
     @DeleteMapping(
         value = ["/remove/{id}"]
     )
@@ -67,5 +99,6 @@ class Endpoints(
     companion object {
         const val RESPONSE_MEDIA_TYPE = "application/json"
         const val V2_MEDIA_TYPE = "application/v2+json"
+        const val V3_MEDIA_TYPE = "application/v3+json"
     }
 }
