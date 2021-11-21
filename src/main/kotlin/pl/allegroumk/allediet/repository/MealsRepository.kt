@@ -1,6 +1,8 @@
 package pl.allegroumk.allediet.repository
 
 import pl.allegroumk.allediet.service.model.Meal
+import pl.allegroumk.allediet.service.model.MealToUpdate
+import pl.allegroumk.allediet.service.model.MealsSummary
 
 interface MealsRepository {
 
@@ -12,12 +14,22 @@ interface MealsRepository {
 
     fun deleteMeal(id: String)
 
-    fun updateMeal(mealToUpdate: Meal): Meal?
+    fun updateMeal(mealToUpdate: Meal)
 
-    //fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int): Iterable<Meal>
-    //
-    //fun getAllMealsSortedByNameDescending(): Iterable<Meal>
-    //
-    //fun getMealsWithMoreIngredientsThan(count: Int): Iterable<Meal>
+    // ---
+
+    fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int): Iterable<Meal>
+
+    fun getAllMealsSortedByCaloriesAscending(): Iterable<Meal>
+
+    fun getMealsWithMoreIngredientsThan(count: Int): Iterable<Meal>
+
+    fun getMealsByNames(names: List<String>): Iterable<Meal>
+
+    fun deleteMealsByName(name: String)
+
+    fun findAndModify(mealToUpdate: MealToUpdate): Meal?
+
+    fun getMealsSummary(): MealsSummary?
 
 }

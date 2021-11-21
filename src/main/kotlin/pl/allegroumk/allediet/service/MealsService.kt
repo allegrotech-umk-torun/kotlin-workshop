@@ -7,6 +7,7 @@ import pl.allegroumk.allediet.api.model.UpdateMeal
 import pl.allegroumk.allediet.repository.MealsRepository
 import pl.allegroumk.allediet.service.model.Ingredient
 import pl.allegroumk.allediet.service.model.Meal
+import pl.allegroumk.allediet.service.model.MealToUpdate
 import java.time.LocalDateTime
 
 @Component
@@ -30,7 +31,9 @@ class MealsService(
     }
 
     fun updateMeal(updateMeal: UpdateMeal): Meal? {
+        // 1
         val mealToUpdate = getMeal(updateMeal.id)
+        // 2
         val updatedMeal = mealToUpdate?.let {
             it.copy(
                 calories = it.calories + updateMeal.ingredients.sumOf { it.calories },
@@ -40,19 +43,35 @@ class MealsService(
         }
 
         if (updatedMeal != null) {
+            // 3
             deleteMeal(updateMeal.id)
             repository.updateMeal(updatedMeal)
         }
+
+        // 4
         return updatedMeal
     }
 
     fun deleteMeal(id: String) = repository.deleteMeal(id)
 
-    //fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int) =
-    //    repository.getMealsWithCaloriesBetween(minCalories, maxCalories)
-    //
-    //fun getAllMealsSortedInDB() = repository.getAllMealsSortedByNameDescending()
-    //
-    //fun getMealsAdvanced() = repository.getMealsWithMoreIngredientsThan(5)
+    fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int) =
+        repository.getMealsWithCaloriesBetween(minCalories, maxCalories)
 
+    fun getAllMealsSortedInDB() = repository.getAllMealsSortedByCaloriesAscending()
+
+    fun getMealsAdvanced() = repository.getMealsWithMoreIngredientsThan(3)
+
+    fun getMeals(names: List<String>) = repository.getMealsByNames(names)
+
+    fun deleteMealsByName(name: String) = repository.deleteMealsByName(name)
+
+    fun findAndModify(updateMeal: UpdateMeal): Meal? {
+        val mealToUpdate = MealToUpdate(
+            updateMeal.id,
+            updateMeal.ingredients.map { Ingredient(it.name, it.calories) }
+        )
+        return repository.findAndModify(mealToUpdate)
+    }
+
+    fun getMealsSummary() = repository.getMealsSummary()
 }

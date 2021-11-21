@@ -6,6 +6,7 @@ import pl.allegroumk.allediet.api.model.InputMeal
 import pl.allegroumk.allediet.api.model.UpdateMeal
 import pl.allegroumk.allediet.service.MealsService
 import pl.allegroumk.allediet.service.model.Meal
+import pl.allegroumk.allediet.service.model.MealsSummary
 
 @RestController
 @RequestMapping("/meals")
@@ -32,14 +33,14 @@ class Endpoints(
         return ResponseEntity.ok().body(allMeals)
     }
 
-    //@GetMapping(
-    //    value = ["/all"],
-    //    produces = [V3_MEDIA_TYPE]
-    //)
-    //fun getMealsSortedInDB(): ResponseEntity<Iterable<Meal>> {
-    //    val allMeals = mealsService.getAllMealsSortedInDB()
-    //    return ResponseEntity.ok().body(allMeals)
-    //}
+    @GetMapping(
+        value = ["/all"],
+        produces = [V3_MEDIA_TYPE]
+    )
+    fun getMealsSortedInDB(): ResponseEntity<Iterable<Meal>> {
+        val allMeals = mealsService.getAllMealsSortedInDB()
+        return ResponseEntity.ok().body(allMeals)
+    }
 
     @GetMapping(
         value = ["/show"],
@@ -49,26 +50,35 @@ class Endpoints(
         return mealsService.getMeal(id)?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound().build()
     }
 
-    //@GetMapping(
-    //    value = ["/find"],
-    //    produces = [RESPONSE_MEDIA_TYPE]
-    //)
-    //fun getMealsWithCaloriesBetween(
-    //    @RequestParam("minCalories") minCalories: Int,
-    //    @RequestParam("maxCalories") maxCalories: Int
-    //): ResponseEntity<Iterable<Meal>> {
-    //    val allMeals = mealsService.getMealsWithCaloriesBetween(minCalories, maxCalories)
-    //    return ResponseEntity.ok().body(allMeals)
-    //}
+    @GetMapping(
+        value = ["/find"],
+        produces = [RESPONSE_MEDIA_TYPE]
+    )
+    fun getMealsWithCaloriesBetween(
+        @RequestParam("minCalories") minCalories: Int,
+        @RequestParam("maxCalories") maxCalories: Int
+    ): ResponseEntity<Iterable<Meal>> {
+        val allMeals = mealsService.getMealsWithCaloriesBetween(minCalories, maxCalories)
+        return ResponseEntity.ok().body(allMeals)
+    }
 
-    //@GetMapping(
-    //    value = ["/advanced"],
-    //    produces = [RESPONSE_MEDIA_TYPE]
-    //)
-    //fun getMealsAdvanced(): ResponseEntity<Iterable<Meal>> {
-    //    val allMeals = mealsService.getMealsAdvanced()
-    //    return ResponseEntity.ok().body(allMeals)
-    //}
+    @GetMapping(
+        value = ["/find"],
+        produces = [V2_MEDIA_TYPE]
+    )
+    fun getMealsWithNames(@RequestParam("name") names: List<String>): ResponseEntity<Iterable<Meal>> {
+        val allMeals = mealsService.getMeals(names)
+        return ResponseEntity.ok().body(allMeals)
+    }
+
+    @GetMapping(
+        value = ["/advanced"],
+        produces = [RESPONSE_MEDIA_TYPE]
+    )
+    fun getMealsAdvanced(): ResponseEntity<Iterable<Meal>> {
+        val allMeals = mealsService.getMealsAdvanced()
+        return ResponseEntity.ok().body(allMeals)
+    }
 
     @PostMapping(
         value = ["/add"],
@@ -94,6 +104,32 @@ class Endpoints(
     )
     fun deleteMeal(@PathVariable("id") id: String) {
         mealsService.deleteMeal(id)
+    }
+
+    @DeleteMapping(
+        value = ["/remove"]
+    )
+    fun deleteMealsByName(@RequestParam("name") name: String) {
+        mealsService.deleteMealsByName(name)
+    }
+
+    @PostMapping(
+        value = ["/findAndModify"],
+        consumes = [RESPONSE_MEDIA_TYPE],
+        produces = [RESPONSE_MEDIA_TYPE]
+    )
+    fun findAndModify(@RequestBody updateMeal: UpdateMeal): ResponseEntity<Meal> {
+        return mealsService.findAndModify(updateMeal)?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound()
+            .build()
+    }
+
+    @GetMapping(
+        value = ["/summary"],
+        produces = [RESPONSE_MEDIA_TYPE]
+    )
+    fun getMealsSummary(): ResponseEntity<MealsSummary> {
+        return mealsService.getMealsSummary()?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound()
+            .build()
     }
 
     companion object {
