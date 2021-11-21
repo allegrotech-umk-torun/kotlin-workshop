@@ -48,11 +48,4 @@ class MealsService(
 
     fun deleteMeal(id: String) = repository.deleteMeal(id)
 
-    //fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int) =
-    //    repository.getMealsWithCaloriesBetween(minCalories, maxCalories)
-    //
-    //fun getAllMealsSortedInDB() = repository.getAllMealsSortedByNameDescending()
-    //
-    //fun getMealsAdvanced() = repository.getMealsWithMoreIngredientsThan(5)
-
 }

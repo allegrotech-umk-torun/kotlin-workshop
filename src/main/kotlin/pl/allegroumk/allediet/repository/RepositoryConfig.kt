@@ -2,19 +2,15 @@ package pl.allegroumk.allediet.repository
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import pl.allegroumk.allediet.repository.mongo.MongoMealsRepository
-import pl.allegroumk.allediet.repository.mongo.SpringMongoMealsRepository
+import pl.allegroumk.allediet.repository.inMemory.InMemoryMealsRepository
 
 @Configuration
 class RepositoryConfig {
 
     @Bean
-    fun mealsRepository(repository: SpringMongoMealsRepository): MealsRepository {
-        return MongoMealsRepository(repository)
-    }
+    fun mealsRepository() = InMemoryMealsRepository()
 
     @Bean
-    fun feedMealsRepository(repository: MealsRepository): FeedMealsRepository {
-        return FeedMealsRepository(repository)
-    }
+    fun feedMealsRepository(repository: MealsRepository) = FeedMealsRepository(repository)
+
 }

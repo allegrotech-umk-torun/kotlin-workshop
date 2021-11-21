@@ -17,27 +17,14 @@ class InMemoryMealsRepository : MealsRepository {
         return meal
     }
 
-    override fun updateMeal(mealToUpdate: Meal): Meal {
+    override fun updateMeal(mealToUpdate: Meal) {
         deleteMeal(mealToUpdate.id)
         meals.add(mealToUpdate.toDocument())
-        return mealToUpdate
     }
 
     override fun deleteMeal(id: String) {
         meals.removeIf { it.id == id }
     }
-
-    //override fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int): Iterable<Meal> {
-    //    TODO("Not yet implemented")
-    //}
-    //
-    //override fun getAllMealsSortedByNameDescending(): Iterable<Meal> {
-    //    TODO("Not yet implemented")
-    //}
-    //
-    //override fun getMealsWithMoreIngredientsThan(count: Int): Iterable<Meal> {
-    //    TODO("Not yet implemented")
-    //}
 
     private fun InMemoryMeal.toDomain(): Meal {
         return Meal(id, name, calories, listOf(Ingredient(name, calories)), createdAt, updatedAt)

@@ -12,12 +12,6 @@ interface MealsRepository {
 
     fun deleteMeal(id: String)
 
-    fun updateMeal(mealToUpdate: Meal): Meal?
-
-    //fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int): Iterable<Meal>
-    //
-    //fun getAllMealsSortedByNameDescending(): Iterable<Meal>
-    //
-    //fun getMealsWithMoreIngredientsThan(count: Int): Iterable<Meal>
+    fun updateMeal(mealToUpdate: Meal)
 
 }
