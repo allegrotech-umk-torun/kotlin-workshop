@@ -3,6 +3,8 @@ package pl.allegroumk.allediet.repository.inMemory
 import pl.allegroumk.allediet.repository.MealsRepository
 import pl.allegroumk.allediet.service.model.Ingredient
 import pl.allegroumk.allediet.service.model.Meal
+import pl.allegroumk.allediet.service.model.MealToUpdate
+import pl.allegroumk.allediet.service.model.MealsSummary
 
 class InMemoryMealsRepository : MealsRepository {
 
@@ -17,27 +19,42 @@ class InMemoryMealsRepository : MealsRepository {
         return meal
     }
 
-    override fun updateMeal(mealToUpdate: Meal): Meal {
+    override fun updateMeal(mealToUpdate: Meal) {
         deleteMeal(mealToUpdate.id)
         meals.add(mealToUpdate.toDocument())
-        return mealToUpdate
     }
 
     override fun deleteMeal(id: String) {
         meals.removeIf { it.id == id }
     }
 
-    //override fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int): Iterable<Meal> {
-    //    TODO("Not yet implemented")
-    //}
-    //
-    //override fun getAllMealsSortedByNameDescending(): Iterable<Meal> {
-    //    TODO("Not yet implemented")
-    //}
-    //
-    //override fun getMealsWithMoreIngredientsThan(count: Int): Iterable<Meal> {
-    //    TODO("Not yet implemented")
-    //}
+    override fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int): Iterable<Meal> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getAllMealsSortedByCaloriesAscending(): Iterable<Meal> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getMealsWithMoreIngredientsThan(count: Int): Iterable<Meal> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getMealsByNames(names: List<String>): Iterable<Meal> {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteMealsByName(name: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun findAndModify(mealToUpdate: MealToUpdate): Meal? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getMealsSummary(): MealsSummary {
+        TODO("Not yet implemented")
+    }
 
     private fun InMemoryMeal.toDomain(): Meal {
         return Meal(id, name, calories, listOf(Ingredient(name, calories)), createdAt, updatedAt)

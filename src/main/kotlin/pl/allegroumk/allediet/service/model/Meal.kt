@@ -31,4 +31,3 @@ data class Ingredient(
     val name: String,
     val calories: Int
 )
-
