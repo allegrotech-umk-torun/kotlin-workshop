@@ -8,7 +8,7 @@ import pl.allegroumk.allediet.repository.inMemory.InMemoryMealsRepository
 class FeedMealsRepositorySpec {
 
     @Test
-    fun `should feed meals repository with default meals when there are no meals added`() {
+    fun `should feed meals repository with default meals when there are no meals available`() {
         // given
         val repository = InMemoryMealsRepository()
         val feedRepository = FeedMealsRepository(repository)
@@ -23,7 +23,7 @@ class FeedMealsRepositorySpec {
     }
 
     @Test
-    fun `should not feed meals repository when there are already some meals added`() {
+    fun `should not feed meals repository when there are already some meals available`() {
         // given
         val repository = InMemoryMealsRepository()
         val feedRepository = FeedMealsRepository(repository)
