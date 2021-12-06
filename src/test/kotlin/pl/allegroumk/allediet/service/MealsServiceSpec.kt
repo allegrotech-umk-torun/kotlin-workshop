@@ -18,6 +18,7 @@ class MealsServiceSpec {
 
     private val firstMealToAdd = prepareMeal("breakfast", listOf(Ingredient("kawa", 50)))
     private val secondMealToAdd = prepareMeal("lunch", listOf(Ingredient("płatki", 100)))
+
     private lateinit var mealsRepository: MealsRepository
     private lateinit var mealsService: MealsService
 
@@ -43,6 +44,7 @@ class MealsServiceSpec {
 
     private fun getTestData() = listOf(
         Arguments.of(40, 60, listOf(firstMealToAdd))
+        // TODO
     )
 
     private fun prepareMeal(name: String, ingredients: List<Ingredient>) =

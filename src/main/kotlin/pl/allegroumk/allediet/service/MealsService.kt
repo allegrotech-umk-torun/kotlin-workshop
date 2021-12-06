@@ -31,7 +31,10 @@ class MealsService(
     }
 
     fun updateMeal(updateMeal: UpdateMeal): Meal? {
+        // 1
         val mealToUpdate = getMeal(updateMeal.id)
+
+        // 2
         val updatedMeal = mealToUpdate?.let {
             it.copy(
                 calories = it.calories + updateMeal.ingredients.sumOf { it.calories },
@@ -41,7 +44,9 @@ class MealsService(
         }
 
         if (updatedMeal != null) {
+            // 3
             deleteMeal(updateMeal.id)
+            // 4
             repository.updateMeal(updatedMeal)
         }
         return updatedMeal

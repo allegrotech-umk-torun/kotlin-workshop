@@ -28,8 +28,9 @@ class InMemoryMealsRepository : MealsRepository {
         meals.removeIf { it.id == id }
     }
 
-    override fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int) =
-        meals.filter { it.calories in (minCalories + 1) until maxCalories }.map { it.toDomain() }
+    override fun getMealsWithCaloriesBetween(minCalories: Int, maxCalories: Int): Iterable<Meal> {
+        TODO("Not yet implemented")
+    }
 
     override fun getAllMealsSortedByCaloriesAscending(): Iterable<Meal> {
         TODO("Not yet implemented")
