@@ -1,0 +1,383 @@
+{
+  "id": 3,
+  "original": "jajka chia",
+  "originalName": "jajka chia",
+  "name": "jajka chia",
+  "amount": 100,
+  "unit": "gram",
+  "unitShort": "g",
+  "unitLong": "grams",
+  "possibleUnits": [
+    "piece",
+    "g",
+    "oz"
+  ],
+  "estimatedCost": {
+    "value": 178.57,
+    "unit": "US Cents"
+  },
+  "consistency": "solid",
+  "aisle": "Health Foods;Baking",
+  "image": "no.jpg",
+  "meta": [],
+  "nutrition": {
+    "nutrients": [
+      {
+        "title": "Vitamin B12",
+        "name": "Vitamin B12",
+        "amount": 0,
+        "unit": "µg"
+      },
+      {
+        "title": "Iron",
+        "name": "Iron",
+        "amount": 7.72,
+        "unit": "mg"
+      },
+      {
+        "title": "Zinc",
+        "name": "Zinc",
+        "amount": 4.58,
+        "unit": "mg"
+      },
+      {
+        "title": "Vitamin B3",
+        "name": "Vitamin B3",
+        "amount": 8.83,
+        "unit": "mg"
+      },
+      {
+        "title": "Folate",
+        "name": "Folate",
+        "amount": 49,
+        "unit": "µg"
+      },
+      {
+        "title": "Vitamin C",
+        "name": "Vitamin C",
+        "amount": 1.6,
+        "unit": "mg"
+      },
+      {
+        "title": "Fat",
+        "name": "Fat",
+        "amount": 30.74,
+        "unit": "g"
+      },
+      {
+        "title": "Vitamin B2",
+        "name": "Vitamin B2",
+        "amount": 0.17,
+        "unit": "mg"
+      },
+      {
+        "title": "Saturated Fat",
+        "name": "Saturated Fat",
+        "amount": 3.33,
+        "unit": "g"
+      },
+      {
+        "title": "Vitamin B1",
+        "name": "Vitamin B1",
+        "amount": 0.62,
+        "unit": "mg"
+      },
+      {
+        "title": "Cholesterol",
+        "name": "Cholesterol",
+        "amount": 0,
+        "unit": "mg"
+      },
+      {
+        "title": "Potassium",
+        "name": "Potassium",
+        "amount": 407,
+        "unit": "mg"
+      },
+      {
+        "title": "Copper",
+        "name": "Copper",
+        "amount": 0.92,
+        "unit": "mg"
+      },
+      {
+        "title": "Fiber",
+        "name": "Fiber",
+        "amount": 34.4,
+        "unit": "g"
+      },
+      {
+        "title": "Phosphorus",
+        "name": "Phosphorus",
+        "amount": 860,
+        "unit": "mg"
+      },
+      {
+        "title": "Selenium",
+        "name": "Selenium",
+        "amount": 55.2,
+        "unit": "µg"
+      },
+      {
+        "title": "Vitamin A",
+        "name": "Vitamin A",
+        "amount": 54,
+        "unit": "IU"
+      },
+      {
+        "title": "Vitamin E",
+        "name": "Vitamin E",
+        "amount": 0.5,
+        "unit": "mg"
+      },
+      {
+        "title": "Mono Unsaturated Fat",
+        "name": "Mono Unsaturated Fat",
+        "amount": 2.31,
+        "unit": "g"
+      },
+      {
+        "title": "Protein",
+        "name": "Protein",
+        "amount": 16.54,
+        "unit": "g"
+      },
+      {
+        "title": "Poly Unsaturated Fat",
+        "name": "Poly Unsaturated Fat",
+        "amount": 23.67,
+        "unit": "g"
+      },
+      {
+        "title": "Calcium",
+        "name": "Calcium",
+        "amount": 631,
+        "unit": "mg"
+      },
+      {
+        "title": "Sodium",
+        "name": "Sodium",
+        "amount": 16,
+        "unit": "mg"
+      },
+      {
+        "title": "Trans Fat",
+        "name": "Trans Fat",
+        "amount": 0.14,
+        "unit": "g"
+      },
+      {
+        "title": "Net Carbohydrates",
+        "name": "Net Carbohydrates",
+        "amount": 7.72,
+        "unit": "g"
+      },
+      {
+        "title": "Carbohydrates",
+        "name": "Carbohydrates",
+        "amount": 42.12,
+        "unit": "g"
+      },
+      {
+        "title": "Calories",
+        "name": "Calories",
+        "amount": 486,
+        "unit": "kcal"
+      },
+      {
+        "title": "Magnesium",
+        "name": "Magnesium",
+        "amount": 335,
+        "unit": "mg"
+      },
+      {
+        "title": "Manganese",
+        "name": "Manganese",
+        "amount": 2.72,
+        "unit": "mg"
+      }
+    ],
+    "properties": [
+      {
+        "name": "Glycemic Index",
+        "title": "Glycemic Index",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Glycemic Load",
+        "title": "Glycemic Load",
+        "amount": 0,
+        "unit": ""
+      }
+    ],
+    "flavonoids": [
+      {
+        "name": "Cyanidin",
+        "title": "Cyanidin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Petunidin",
+        "title": "Petunidin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Delphinidin",
+        "title": "Delphinidin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Malvidin",
+        "title": "Malvidin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Pelargonidin",
+        "title": "Pelargonidin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Peonidin",
+        "title": "Peonidin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Catechin",
+        "title": "Catechin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Epigallocatechin",
+        "title": "Epigallocatechin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Epicatechin",
+        "title": "Epicatechin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Epicatechin 3-gallate",
+        "title": "Epicatechin 3-gallate",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Epigallocatechin 3-gallate",
+        "title": "Epigallocatechin 3-gallate",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Theaflavin",
+        "title": "Theaflavin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Thearubigins",
+        "title": "Thearubigins",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Eriodictyol",
+        "title": "Eriodictyol",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Hesperetin",
+        "title": "Hesperetin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Naringenin",
+        "title": "Naringenin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Apigenin",
+        "title": "Apigenin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Luteolin",
+        "title": "Luteolin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Isorhamnetin",
+        "title": "Isorhamnetin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Kaempferol",
+        "title": "Kaempferol",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Myricetin",
+        "title": "Myricetin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Quercetin",
+        "title": "Quercetin",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Theaflavin-3,3'-digallate",
+        "title": "Theaflavin-3,3'-digallate",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Theaflavin-3'-gallate",
+        "title": "Theaflavin-3'-gallate",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Theaflavin-3-gallate",
+        "title": "Theaflavin-3-gallate",
+        "amount": 0,
+        "unit": ""
+      },
+      {
+        "name": "Gallocatechin",
+        "title": "Gallocatechin",
+        "amount": 0,
+        "unit": ""
+      }
+    ],
+    "caloricBreakdown": {
+      "percentProtein": 12.94,
+      "percentFat": 54.11,
+      "percentCarbs": 32.95
+    },
+    "weightPerServing": {
+      "amount": 100,
+      "unit": "g"
+    }
+  },
+  "categoryPath": []
+}

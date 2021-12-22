@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "name": "jajko",
+      "image": "no.jpg"
+    },
+    {
+      "id": 2,
+      "name": "czekoladowe jajko",
+      "image": "chocolate-easter-eggs.jpg"
+    },
+    {
+      "id": 3,
+      "name": "jajka chia",
+      "image": "no.jpg"
+    },
+    {
+      "id": 4,
+      "name": "jajecznica",
+      "image": "egg-yolk.jpg"
+    },
+    {
+      "id": 5,
+      "name": "jajka sadzone",
+      "image": "quail-eggs.jpg"
+    }
+  ],
+  "offset": 0,
+  "number": 20,
+  "totalResults": 5
+}

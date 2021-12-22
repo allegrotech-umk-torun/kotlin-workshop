@@ -26,6 +26,9 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.1")
     testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:3.0.0")
+    testImplementation("com.github.tomakehurst:wiremock-standalone:2.27.2")
+    testImplementation("junit:junit:4.13.2")
+
 }
 
 tasks {

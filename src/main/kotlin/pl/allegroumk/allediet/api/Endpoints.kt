@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*
 import pl.allegroumk.allediet.api.model.InputMeal
 import pl.allegroumk.allediet.api.model.UpdateMeal
 import pl.allegroumk.allediet.service.MealsService
+import pl.allegroumk.allediet.service.model.IngredientInformation
+import pl.allegroumk.allediet.service.model.IngredientsList
 import pl.allegroumk.allediet.service.model.Meal
 import pl.allegroumk.allediet.service.model.MealsSummary
 
@@ -130,6 +132,20 @@ class Endpoints(
     fun getMealsSummary(): ResponseEntity<MealsSummary> {
         return mealsService.getMealsSummary()?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound()
             .build()
+    }
+
+    @GetMapping(
+        value = ["getIngredientsListByName"]
+    )
+    fun getIngredientsListByName(@RequestParam("name") name: String): ResponseEntity<IngredientsList> {
+        return mealsService.getIngredientsListByName(name).let { ResponseEntity.ok().body(it) }
+    }
+
+    @GetMapping(
+        value = ["getIngredientInformation"]
+    )
+    fun getIngredientInformation(@RequestParam("id") id: Long): ResponseEntity<IngredientInformation> {
+        return mealsService.getIngredientInformation(id)?.let { ResponseEntity.ok().body(it) } ?: ResponseEntity.notFound().build()
     }
 
     companion object {

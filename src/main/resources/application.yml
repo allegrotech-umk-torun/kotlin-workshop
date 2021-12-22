@@ -1,0 +1,29 @@
+server:
+  port: '8085'
+
+#spring:
+#  data:
+#    mongodb:
+#      uri: 'mongodb+srv://zajecia:Test1234@mmaszkie-m001.jzdnj.mongodb.net/mmaszkie-m001?retryWrites'
+
+spring:
+  data:
+    mongodb:
+      uri: 'mongodb://admin:1234@localhost:27017/local?authSource=admin&ssl=false'
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core: DEBUG
+
+spoonacular:
+  api_key: '3dcfcb52c9764a63992d7e478b214183'
+  url: 'https://api.spoonacular.com'
+  search_path: 'food/ingredients/search'
+  search_limit: 20
+  details_path: 'food/ingredients/%s/information'
+  connect_timeout: 1000
+  read_timeout: 2000

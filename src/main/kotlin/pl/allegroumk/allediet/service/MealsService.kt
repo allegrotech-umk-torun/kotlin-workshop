@@ -4,15 +4,15 @@ import org.apache.commons.lang3.RandomStringUtils
 import org.springframework.stereotype.Component
 import pl.allegroumk.allediet.api.model.InputMeal
 import pl.allegroumk.allediet.api.model.UpdateMeal
+import pl.allegroumk.allediet.outgoing.spoonacular.SpoonacularService
 import pl.allegroumk.allediet.repository.MealsRepository
-import pl.allegroumk.allediet.service.model.Ingredient
-import pl.allegroumk.allediet.service.model.Meal
-import pl.allegroumk.allediet.service.model.MealToUpdate
+import pl.allegroumk.allediet.service.model.*
 import java.time.LocalDateTime
 
 @Component
 class MealsService(
-    val repository: MealsRepository
+    val repository: MealsRepository,
+    val spoonacularService: SpoonacularService
 ) {
 
     fun getAllMeals() = repository.getAllMeals()
@@ -69,4 +69,12 @@ class MealsService(
     }
 
     fun getMealsSummary() = repository.getMealsSummary()
+
+    fun getIngredientsListByName(name: String): IngredientsList {
+        return spoonacularService.getIngredientsByName(name)
+    }
+
+    fun getIngredientInformation(id: Long): IngredientInformation? {
+        return spoonacularService.getIngredientDetails(id)
+    }
 }
