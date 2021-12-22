@@ -20,7 +20,7 @@ logging:
             core: DEBUG
 
 spoonacular:
-  api_key: '3dcfcb52c9764a63992d7e478b214183'
+  api_key: 'tu wklej swój klucz api'
   url: 'https://api.spoonacular.com'
   search_path: 'food/ingredients/search'
   search_limit: 20
