@@ -1,0 +1,20 @@
+server:
+  port: '8085'
+
+#spring:
+#  data:
+#    mongodb:
+#      uri: 'mongodb+srv://zajecia:Test1234@mmaszkie-m001.jzdnj.mongodb.net/mmaszkie-m001?retryWrites'
+
+spring:
+  data:
+    mongodb:
+      uri: 'mongodb://admin:1234@localhost:27017/local?authSource=admin&ssl=false'
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core: DEBUG
