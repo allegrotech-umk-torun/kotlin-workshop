@@ -2,6 +2,7 @@ package pl.allegro.umk.allediet.outgoing
 
 import com.github.tomakehurst.wiremock.client.WireMock.*
 import com.github.tomakehurst.wiremock.junit.WireMockRule
+import com.github.tomakehurst.wiremock.stubbing.Scenario
 import org.junit.ClassRule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,10 +29,12 @@ class SpoonacularIntegrationSpec {
     @Autowired
     private lateinit var restTemplate: TestRestTemplate
 
+    private var scenario = Scenario.STARTED
+
     companion object {
         @ClassRule
         @JvmField
-        val wireMockRule = WireMockRule(7070)
+        val spoonacularServiceStub = WireMockRule(7070)
     }
 
     fun prepareSpoonacularStubForSearch() {
@@ -45,20 +48,22 @@ class SpoonacularIntegrationSpec {
         )
     }
 
-    fun prepareSpoonacularStubForInformation(id: Long) {
+    fun prepareSpoonacularStubForInformation(id: Long, responseStatusCode: Int = 200, responseFile: String, state: String? = null, changeStateTo: String? = null) {
         stubFor(
-            get(urlPathEqualTo("/food/ingredients/$id/information"))
+            get(urlPathEqualTo("/food/ingredients/$id/information")).inScenario(scenario)
+                .whenScenarioStateIs(state)
                 .willReturn(
-                    aResponse().withBodyFile("spoonacular/$id.json")
+                    aResponse().withBodyFile("spoonacular/$responseFile.json")
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .withStatus(200)
+                        .withStatus(responseStatusCode)
                 )
-        )
+                .willSetStateTo(changeStateTo))
     }
 
     @Test
     fun getIngredientsListByNameTest() {
         // given:
+        spoonacularServiceStub.resetAll()
         prepareSpoonacularStubForSearch()
 
         // when:
@@ -76,8 +81,9 @@ class SpoonacularIntegrationSpec {
     @Test
     fun getIngredientInformationTest() {
         // given:
+        spoonacularServiceStub.resetAll()
         val idToSearch = 3L
-        prepareSpoonacularStubForInformation(idToSearch)
+        prepareSpoonacularStubForInformation(idToSearch, 200, idToSearch.toString())
 
         // when:
         val response = restTemplate.getForEntity("/meals/getIngredientInformation?id=$idToSearch", IngredientInformation::class.java)
@@ -89,5 +95,26 @@ class SpoonacularIntegrationSpec {
         assert(responseBody?.id == 3L)
         assert(responseBody?.name == "jajka chia")
         assert(responseBody?.calories == 486F)
+    }
+
+    @Test
+    fun shouldRetryRequestToSpoonacularServiceWhenFirstResponseFailed() {
+        // given:
+        spoonacularServiceStub.resetAll()
+        val idToSearch = 3L
+        prepareSpoonacularStubForInformation(idToSearch, 503, "503", null, "serviceFailed")
+        prepareSpoonacularStubForInformation(idToSearch, 200, "3", "serviceFailed", null)
+
+        // when:
+        val response = restTemplate.getForEntity("/meals/getIngredientInformation?id=$idToSearch", IngredientInformation::class.java)
+
+        val responseBody = response.body
+
+        // then:
+        assert(response.statusCode == HttpStatus.OK)
+
+        assert(responseBody?.name == "jajka chia")
+
+        spoonacularServiceStub.verify(2, getRequestedFor(urlPathEqualTo("/food/ingredients/$idToSearch/information")))
     }
 }

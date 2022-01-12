@@ -20,10 +20,15 @@ logging:
             core: DEBUG
 
 spoonacular:
-  api_key: 'tu wklej swój klucz api'
+  api_key: 'tu wstaw swoj apiKey'
   url: 'https://api.spoonacular.com'
   search_path: 'food/ingredients/search'
   search_limit: 20
   details_path: 'food/ingredients/%s/information'
-  connect_timeout: 1000
-  read_timeout: 2000
+  connect_timeout: 500
+  read_timeout: 1000
+  retry_read_timeout: 2000
+  cache:
+    spoonacular-ingredients-information-cache-size: 500
+    refresh-after-write: 600 # sec
+    expire-after-write: 3600 # sec

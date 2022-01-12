@@ -16,14 +16,23 @@ class SpoonacularClientConfiguration(
     var searchLimit: Int?,
     var detailsPath: String?,
     var connectTimeout: Long?,
-    var readTimeout: Long?
+    var readTimeout: Long?,
+    var retryReadTimeout: Long?,
 ) {
 
     @Bean
     fun spoonacularRestTemplate(): RestTemplate {
         return RestTemplateBuilder()
             .setConnectTimeout(Duration.ofMillis(connectTimeout ?: 500))
-            .setReadTimeout(Duration.ofMillis(readTimeout ?: 2000))
+            .setReadTimeout(Duration.ofMillis(readTimeout ?: 1000))
+            .build()
+    }
+
+    @Bean
+    fun spoonacularRestTemplateForRetry(): RestTemplate {
+        return RestTemplateBuilder()
+            .setConnectTimeout(Duration.ofMillis(connectTimeout ?: 500))
+            .setReadTimeout(Duration.ofMillis(retryReadTimeout ?: 2000))
             .build()
     }
 }

@@ -11,6 +11,7 @@ import pl.allegroumk.allediet.outgoing.spoonacular.model.SearchResults
 @Component
 class SpoonacularClient(
     private val spoonacularRestTemplate: RestTemplate,
+    private val spoonacularRestTemplateForRetry: RestTemplate,
     private val spoonacularClientConfiguration: SpoonacularClientConfiguration
 ) {
     private val logger = LoggerFactory.getLogger(SpoonacularService::class.java)
@@ -29,12 +30,22 @@ class SpoonacularClient(
         return try {
             spoonacularRestTemplate.getForObject(uri, SearchResults::class.java) ?: SearchResults(emptyList())
         } catch (ex: RestClientException) {
-            logger.error("Request for ingredients by name failed. Cause = ${ex.cause}")
-            SearchResults(emptyList())
+            try {
+                logger.warn("Retry request for ingredients by name. Exception for first request cause = ${ex.cause}")
+                spoonacularRestTemplateForRetry.getForObject(uri, SearchResults::class.java)
+                    ?: SearchResults(emptyList())
+            } catch (ex: RestClientException) {
+                logger.error("Retry request for ingredients by name failed. Cause = ${ex.cause}")
+                SearchResults(emptyList())
+            }
         }
     }
 
-    fun getIngredientInformationById(id: Long, amount: Int = 100, unit: String = "gram"): SpoonacularIngredientInformation? {
+    fun getIngredientInformationById(
+        id: Long,
+        amount: Int = 100,
+        unit: String = "gram"
+    ): SpoonacularIngredientInformation? {
         val uri = UriComponentsBuilder.fromUriString(spoonacularClientConfiguration.url!!)
             .path(String.format(spoonacularClientConfiguration.detailsPath!!, id))
             .queryParam("amount", amount)
@@ -45,8 +56,13 @@ class SpoonacularClient(
         return try {
             spoonacularRestTemplate.getForObject(uri, SpoonacularIngredientInformation::class.java)
         } catch (ex: RestClientException) {
-            logger.error("Request for ingredient information failed. Cause = ${ex.cause}")
-            null
+            return try {
+                logger.warn("Retry request for ingredient information. Exception for first request cause = ${ex.cause}")
+                spoonacularRestTemplateForRetry.getForObject(uri, SpoonacularIngredientInformation::class.java)
+            } catch (ex: RestClientException) {
+                logger.error("Retry request for ingredient information failed. Cause = ${ex.cause}")
+                null
+            }
         }
     }
 }

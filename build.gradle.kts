@@ -23,6 +23,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.0.5")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.1")
     testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:3.0.0")

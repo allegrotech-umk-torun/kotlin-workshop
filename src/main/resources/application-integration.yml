@@ -1,2 +1,6 @@
 spoonacular:
   url: 'http://localhost:7070'
+  cache:
+    spoonacular-ingredients-information-cache-size: 10
+    refresh-after-write: 3 # sec
+    expire-after-write: 6 # sec
