@@ -7,10 +7,15 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import org.springframework.boot.web.client.RestTemplateBuilder
+import pl.allegroumk.allediet.outgoing.spoonacular.SpoonacularClient
+import pl.allegroumk.allediet.outgoing.spoonacular.SpoonacularClientConfiguration
+import pl.allegroumk.allediet.outgoing.spoonacular.SpoonacularService
 import pl.allegroumk.allediet.repository.MealsRepository
 import pl.allegroumk.allediet.repository.inMemory.InMemoryMealsRepository
 import pl.allegroumk.allediet.service.model.Ingredient
 import pl.allegroumk.allediet.service.model.Meal
+import java.time.Duration
 import java.time.LocalDateTime
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -24,8 +29,13 @@ class MealsServiceSpec {
 
     @BeforeEach
     fun beforeEach() {
+        val testRestTemplate = RestTemplateBuilder()
+            .setConnectTimeout(Duration.ofMillis(500))
+            .setReadTimeout(Duration.ofMillis(1000))
+            .build()
+        val spoonacularService = SpoonacularService(SpoonacularClient(testRestTemplate, SpoonacularClientConfiguration(null, null, null, null, null, null, null)))
         mealsRepository = InMemoryMealsRepository()
-        mealsService = MealsService(mealsRepository)
+        mealsService = MealsService(mealsRepository, spoonacularService)
     }
 
     @ParameterizedTest
